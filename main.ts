@@ -11,8 +11,12 @@ import { buildDossier } from './vendor/makefun-app.ts';
 const repoRoot = dirname(fileURLToPath(new URL('./main.ts', import.meta.url)));
 const outDir = resolve(process.env.MAKEFUN_OUTPUT_DIR ?? '/output');
 
-rmSync(outDir, { recursive: true, force: true });
 mkdirSync(outDir, { recursive: true });
+// Never remove outDir itself: in the grader it is a mount that uid 65534
+// cannot rmdir (EPERM). Clear only its contents instead.
+for (const entry of readdirSync(outDir)) {
+  rmSync(join(outDir, entry), { recursive: true, force: true });
+}
 cpSync(join(repoRoot, 'app'), join(outDir, 'app'), { recursive: true });
 cpSync(join(repoRoot, 'screenshots'), join(outDir, 'screenshots'), { recursive: true });
 
