@@ -1,0 +1,102 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  background: #12081f;
+  background-image: linear-gradient(160deg, #1c0b33 0%, #12081f 55%, #2b0f2e 100%);
+  color: #f4eefb;
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.topbar {
+  display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: center; justify-content: space-between;
+  padding: 18px 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.brand { display: flex; gap: 14px; align-items: center; }
+.brand-mark {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: linear-gradient(135deg, #ff5e8a, #ff9a3d 60%, #ffd23d);
+  color: #2b0f2e; font-size: 26px;
+}
+.brand h1 {
+  margin: 0; font-size: 26px; letter-spacing: 0.04em; text-transform: uppercase;
+  background: linear-gradient(90deg, #ff8fb0, #ffb35c, #ffe08a);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.brand p { margin: 2px 0 0; color: #cbb8dd; font-size: 13px; }
+.offline-note { margin: 0; color: #9d8bb0; font-size: 13px; }
+
+.studio {
+  display: grid; grid-template-columns: 380px minmax(0, 1fr);
+  gap: 22px; align-items: start;
+  max-width: 1360px; margin: 0 auto; padding: 22px 28px 40px;
+}
+.panel {
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px; padding: 20px 22px;
+}
+.controls h2 {
+  margin: 18px 0 8px; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #ffb35c;
+}
+.controls h2:first-child { margin-top: 0; }
+.hint { margin: 0 0 12px; color: #cbb8dd; font-size: 13px; }
+.selected-line { margin: 10px 0 0; color: #e8dcf5; font-size: 14px; }
+
+.button-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.button-row button {
+  font: inherit; font-weight: 700; padding: 9px 13px; border-radius: 8px; cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.08); color: #f4eefb;
+}
+.button-row button:hover { background: rgba(255, 255, 255, 0.16); }
+.button-row button.active {
+  background: linear-gradient(135deg, #ff5e8a, #ff9a3d);
+  border-color: transparent; color: #fff;
+}
+.export-row button {
+  background: linear-gradient(135deg, #19c2d8, #7b5cff);
+  border-color: transparent; color: #fff;
+}
+.export-row button:hover { filter: brightness(1.12); }
+
+.photo-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
+.slot {
+  display: flex; flex-direction: column; gap: 6px; padding: 10px; border-radius: 8px;
+  background: rgba(255, 255, 255, 0.07); border: 1px dashed rgba(255, 255, 255, 0.3);
+  font-size: 13px; font-weight: 700; cursor: pointer;
+}
+.slot input { width: 100%; font-size: 11px; color: #cbb8dd; }
+
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; font-weight: 600; font-size: 14px; }
+.field input[type="text"] {
+  font: inherit; padding: 9px 11px; border-radius: 8px; color: #fff;
+  background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.field input[type="range"] { width: 100%; accent-color: #ff5e8a; }
+.field span { color: #cbb8dd; font-weight: 400; font-size: 13px; }
+#status { margin: 14px 0 0; color: #9fe8d8; font-size: 13px; min-height: 1.2em; }
+
+.preview-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+.preview-head h2 { margin: 0; font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; }
+#sizeLabel { color: #cbb8dd; font-size: 13px; }
+#cover {
+  display: block; width: 100%; height: auto; max-height: calc(100vh - 220px);
+  border-radius: 6px; box-shadow: 0 14px 44px rgba(0, 0, 0, 0.55); cursor: crosshair;
+  background: #241233;
+}
+.preview .hint { margin: 12px 0 0; }
+
+/* Screenshot scenes: cover alone, edge to edge. */
+body.shot-cover .topbar, body.shot-cover .controls, body.shot-cover .preview-head,
+body.shot-cover .preview .hint { display: none; }
+body.shot-cover { background: #12081f; }
+body.shot-cover .studio { display: block; max-width: none; margin: 0; padding: 0; }
+body.shot-cover .preview { background: none; border: 0; border-radius: 0; padding: 0; }
+body.shot-cover #cover {
+  width: 100vw; height: 100vh; max-height: none; border-radius: 0; box-shadow: none;
+}
+
+@media (max-width: 900px) {
+  .studio { grid-template-columns: 1fr; }
+  #cover { max-height: none; }
+}

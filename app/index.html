@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">&#9733;</span>
+    <div>
+      <h1>Vice Cover Studio</h1>
+      <p>Turn your photos into a multi-panel Vice City style cover.</p>
+    </div>
+  </div>
+  <p class="offline-note">Works fully offline. Your photos never leave this browser.</p>
+</header>
+<main class="studio">
+  <section class="panel controls" aria-label="Cover controls">
+    <h2>1 &middot; Layout</h2>
+    <div class="button-row" id="layoutRow" role="group" aria-label="Panel layout">
+      <button type="button" data-layout="hero" class="active">Hero + 2</button>
+      <button type="button" data-layout="strip">3-Column</button>
+      <button type="button" data-layout="grid">2 &times; 2 Grid</button>
+    </div>
+
+    <h2>2 &middot; Photos</h2>
+    <p class="hint">Click a panel on the cover to select it, then load a photo into it. One photo can fill every panel, or each panel can hold its own.</p>
+    <div class="photo-slots">
+      <label class="slot">Photo A
+        <input id="photoA" type="file" accept="image/*">
+      </label>
+      <label class="slot">Photo B
+        <input id="photoB" type="file" accept="image/*">
+      </label>
+      <label class="slot">Photo C
+        <input id="photoC" type="file" accept="image/*">
+      </label>
+    </div>
+    <div class="button-row" id="assignRow" role="group" aria-label="Fill panels">
+      <button type="button" id="fillA">Fill all with A</button>
+      <button type="button" id="fillB">Fill all with B</button>
+      <button type="button" id="fillC">Fill all with C</button>
+    </div>
+    <p class="selected-line">Selected panel: <strong id="selectedPanel">Top / Hero</strong></p>
+
+    <h2>3 &middot; Crop the selected panel</h2>
+    <label class="field">Zoom
+      <input id="zoom" type="range" min="1" max="3" step="0.01" value="1">
+      <span id="zoomValue">1.00&times;</span>
+    </label>
+    <label class="field">Pan left / right
+      <input id="panX" type="range" min="-1" max="1" step="0.01" value="0">
+    </label>
+    <label class="field">Pan up / down
+      <input id="panY" type="range" min="-1" max="1" step="0.01" value="0">
+    </label>
+    <div class="button-row" role="group" aria-label="Panel fit">
+      <button type="button" id="fitCover" class="active">Cover</button>
+      <button type="button" id="fitContain">Fit</button>
+      <button type="button" id="resetCrop">Reset crop</button>
+    </div>
+
+    <h2>4 &middot; Words</h2>
+    <label class="field">Title
+      <input id="title" type="text" maxlength="28" value="VICE NIGHTS">
+    </label>
+    <label class="field">Tagline
+      <input id="tagline" type="text" maxlength="48" value="One city. One night. No brakes.">
+    </label>
+
+    <h2>5 &middot; Grade</h2>
+    <div class="button-row" id="gradeRow" role="group" aria-label="Colour grade">
+      <button type="button" data-grade="sunset" class="active">Vice Sunset</button>
+      <button type="button" data-grade="neon">Neon Night</button>
+      <button type="button" data-grade="gold">Palm Gold</button>
+    </div>
+
+    <h2>6 &middot; Export</h2>
+    <div class="button-row export-row" role="group" aria-label="Export size">
+      <button type="button" data-export="1080x1080">PNG 1080 &times; 1080</button>
+      <button type="button" data-export="1080x1350">PNG 1080 &times; 1350</button>
+      <button type="button" data-export="1920x1080">PNG 1920 &times; 1080</button>
+    </div>
+    <p id="status" role="status">Ready.</p>
+  </section>
+
+  <section class="panel preview" aria-label="Cover preview">
+    <div class="preview-head">
+      <h2>Live preview</h2>
+      <span id="sizeLabel">1080 &times; 1080</span>
+    </div>
+    <canvas id="cover" width="1080" height="1080" aria-label="The cover art preview"></canvas>
+    <p class="hint">Tip: click any panel to select it, then use the crop sliders. The ribbon and stars are drawn on the cover.</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
